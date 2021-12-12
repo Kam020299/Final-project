@@ -1,0 +1,117 @@
+<html><head>
+  <title>Final-project</title>
+  <link rel="stylesheet" href="main.css">
+  <link href="https://fonts.googleapis.com/css?family=Didact+Gothic&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans:700&amp;display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+
+<div id="wrapper">
+  <header>
+    <h1>Test about your movie knowledge</h1>
+    <p>Movies test</p>
+  </header>
+  <section>
+    <!-- <button onclick="yourName()">What is your name?</button> -->
+    <p id="demo">Good Evening! I'm...</p>
+
+    <form name="quizForm">
+      <h3>1. The code in The Matrix comes from what food recipes??</h3>
+      <input type="radio" name="q1" value="a" id="q1a">a.Sushi recipes<br>
+      <input type="radio" name="q1" value="b" id="q1b">b.Dumpling recipes<br>
+       <input type="radio" name="q1" value="b" id="q1b">c.Stir-fry recipes<br>
+       <input type="radio" name="q1" value="b" id="q1b">d.Pad thai recipes<br>
+
+      <h3>2. What’s the name of Meatloaf’s character in The Rocky Horror Picture Show?</h3>
+      <input type="radio" name="q2" value="a" id="q2a">a.Henry<br>
+      <input type="radio" name="q2" value="b" id="q2b">b.Eddie<br>
+      <input type="radio" name="q2" value="c" id="q2c">c.Chuch<br>
+      <input type="radio" name="q2" value="d" id="q2d">d.AI<br>
+
+      <h3>3. Who actually drew the sketch of Rose in Titanic?</h3>
+      <input type="radio" name="q3" value="a" id="q3a">a.leonardo DiCaprio<br>
+      <input type="radio" name="q3" value="b" id="q3b">b.Billy Zane<br>
+      <input type="radio" name="q3" value="c" id="q3c">c.James Cameron<br>
+      <input type="radio" name="q3" value="d" id="q3d">d.Kathy Bates<br>
+
+      <h3>4. Who voices Joy in Pixar’s Inside Out?</h3>
+      <input type="radio" name="q4" value="a" id="q4a">a.Tina Fey<br>
+      <input type="radio" name="q4" value="b" id="q4b">b.Kathryn Hahn<br>
+      <input type="radio" name="q4" value="c" id="q4c">c Ellen Degeneres<br>
+      <input type="radio" name="q4" value="d" id="q4d">d.Amy Poehler<br>
+
+      <h3>5. Where were The Lord of the Rings movies filmed??</h3>
+      <input type="radio" name="q5" value="a" id="q5a">a.Ireland<br>
+      <input type="radio" name="q5" value="b" id="q5b">b.Iceland<br>
+      <input type="radio" name="q5" value="c" id="q5c">c.New Zealand<br>
+      <input type="radio" name="q5" value="d" id="q5d">d.Australia<br>
+      <br><br>
+      <input type="submit" value="Submit Answers"><button onclick="restart()" class="restart">Start Over</button>
+    </form>
+    <div id="results"></div>
+  </section>
+</div>
+
+
+
+
+<script>
+var name = yourName("name")
+
+function yourName() {
+  var name = prompt("Please enter your name", "I'm...");
+  var today = new Date;
+  var hour = today.getHours();
+
+  if (hour < 12) {
+    document.getElementById("demo").innerHTML = "Good Morning! " + name;
+  } else if (hour < 18) {
+    document.getElementById("demo").innerHTML = "Good Afternoon! " + name;
+  } else {
+    document.getElementById("demo").innerHTML = "Good Evening! " + name;
+  }
+}
+
+var formElement = document.forms['quizForm'];
+
+formElement.onsubmit = function submitAnswers() {
+  var total = 5;
+  var score = 0;
+  var q1 = document.forms["quizForm"]["q1"].value,
+      q2 = document.forms["quizForm"]["q2"].value,
+      q3 = document.forms["quizForm"]["q3"].value,
+      q4 = document.forms["quizForm"]["q4"].value,
+      q5 = document.forms["quizForm"]["q5"].value;
+
+  for (i = 1; i <= total;i++) {
+    if(eval('q'+i) === null || eval('q'+i) === ''){
+      alert('You missed question '+ i);
+      return false;
+    }
+  }
+
+  var answers = ["a","b","c","d","c"];
+
+  for (i = 1; i <= total;i++) {
+    if (eval('q'+i) === answers[i - 1]) {
+      score++;
+    }
+  }
+
+  var results = document.getElementById('results');
+  results.innerHTML ='<h3>Your score is <span>'+score+'</span> out of <span>'+total+'</span></h3>';
+
+  return false;
+}
+
+  function restart() {
+    location.reload(true);
+  }
+
+
+</script>
+
+
+</body></html>
